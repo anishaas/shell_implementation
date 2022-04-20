@@ -45,7 +45,6 @@ char *lsh_read_line(void) {
 
 }
 
-
 void lsh_loop(void){
     // steps to handle commands - read input, parse program/arguments, execute command
     // READ: C variable declaration - *, **, none

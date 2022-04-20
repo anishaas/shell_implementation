@@ -1,1 +1,1 @@
-# Follolwing a tutorial - https://brennan.io/2015/01/16/write-a-shell-in-c/
+Following a tutorial - https://brennan.io/2015/01/16/write-a-shell-in-c/
