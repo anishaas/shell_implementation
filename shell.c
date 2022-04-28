@@ -45,6 +45,40 @@ char *lsh_read_line(void) {
 
 }
 
+#define LSH_TOK_BUFSIZE 64
+#define LSH_TOK__DELIM " \t\r\n\a"
+char **lsh_split_line(char *line) {
+  int bufsize = LSH_TOK_BUFSIZE, position = 0;
+  char **tokens = malloc(bufsize * sizeof(char*));
+  char *token;
+
+  if (!tokens) {
+      fprintf(stdrr,"lsh: allocation error\n");
+      exit(EXIT_FAILURE);
+  }
+
+  //tokenization - tokenize the string using whitespace as delimiters
+  // use strtok function
+  while (token != NULL) {
+      tokens[position] = token;
+      position++;
+
+      if (position >= bufsize) {
+          bufsize += LSH_TOK_BUFSIZE;
+          tokens = realloc(tokens, bufsize * sizeof(char*));
+          if(!tokens) {
+              fprintf(stderr, "lsh: allocation error\n")
+              exit(EXIT_FAILURE);
+          }
+      }
+
+      token = strtok(NULL, LSH_TOK_DELIM);
+    }
+    // * What is the function of these lines?
+    tokens[position] = NULL;
+    return tokens;
+  }    
+
 void lsh_loop(void){
     // steps to handle commands - read input, parse program/arguments, execute command
     // READ: C variable declaration - *, **, none
